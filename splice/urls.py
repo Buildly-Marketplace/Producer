@@ -1,9 +1,8 @@
 """
-URL routing for Splice REST API and Editor UI.
+URL routing for Splice REST API.
 
-Routes for:
-- Browser editor UI (/splice/editor/{project_id}/)
-- REST API endpoints (/splice/api/v1/)
+Routes for local engine registration, session management, job submission,
+render plans, and project management.
 """
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
@@ -11,7 +10,7 @@ from rest_framework.routers import DefaultRouter
 from splice.views import (
     LocalEngineViewSet, LocalEngineSessionViewSet,
     LocalProcessingJobViewSet, RenderPlanViewSet,
-    EditorProjectViewSet, EditorView,
+    EditorProjectViewSet,
 )
 
 app_name = 'splice'
@@ -24,9 +23,5 @@ router.register(r'render-plans', RenderPlanViewSet, basename='render-plan')
 router.register(r'projects', EditorProjectViewSet, basename='editor-project')
 
 urlpatterns = [
-    # Browser editor UI
-    path('editor/<uuid:project_id>/', EditorView.as_view(), name='editor'),
-
-    # REST API
     path('api/v1/', include(router.urls)),
 ]
