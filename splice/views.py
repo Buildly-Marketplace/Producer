@@ -433,3 +433,43 @@ class EditorProjectViewSet(viewsets.ModelViewSet):
             organization_uuid=self.request.user.organization_uuid,
             created_by=self.request.user,
         )
+
+
+# Browser Editor UI Views
+
+from django.shortcuts import get_object_or_404
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+class EditorView(LoginRequiredMixin, TemplateView):
+    """
+    Main editor page for a project.
+
+    URL: /splice/editor/{project_id}/
+    Template: splice/editor.html
+
+    Loads the browser-based editor UI with access to:
+    - Timeline and clip management
+    - Playback and preview
+    - Export and rendering
+    - Job monitoring
+    """
+    template_name = 'splice/editor.html'
+    login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        project_id = kwargs.get('project_id')
+
+        # Get project with organization scoping
+        project = get_object_or_404(
+            EditorProject,
+            id=project_id,
+            organization_uuid=getattr(self.request.user, 'organization_uuid', None)
+        )
+
+        context['project'] = project
+        context['csrf_token'] = self.request.META.get('CSRF_COOKIE', '')
+
+        return context
