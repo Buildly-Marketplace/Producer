@@ -1,0 +1,110 @@
+slug: producer
+name: Producer
+version: 1.0.0
+summary: >
+  Podcast and media production platform for managing shows, episodes, transcripts,
+  media assets, AI-assisted content generation, and publishing workflows.
+description: |
+  Producer is a Django application built for podcast and media teams. Manage your entire
+  podcast production lifecycle — from recording notes and show segments to transcripts,
+  guest profiles, and AI-generated show notes. Built as part of the Buildly Foundry
+  ecosystem and deployable as a single Docker container alongside the ForgeMarketing suite.
+
+license: BSL-1.1
+repo_url: https://github.com/buildly-marketplace/Producer
+repo_owner: buildly-marketplace
+repo_name: Producer
+
+price: "$9.99"
+
+categories:
+  - productivity
+  - media
+  - content-creation
+  - ai-tools
+
+targets:
+  - docker
+
+key_benefits:
+  - "Full podcast production lifecycle in one app — from idea to published episode"
+  - "AI-assisted show notes and transcript generation"
+  - "Guest management and segment planning tools"
+  - "Media asset library with organized episode archives"
+  - "Ships as a single Docker container — zero ops overhead"
+
+use_cases:
+  - "Podcast producers managing multi-show workflows"
+  - "Media teams collaborating on episode production"
+  - "Solo creators automating show notes with AI"
+  - "Studios needing structured guest and segment tracking"
+
+tech_stack:
+  - Django
+  - Python
+  - Docker
+  - SQLite
+  - PostgreSQL
+  - supervisord
+  - nginx
+
+company_sizes:
+  - solo
+  - startup
+  - smb
+
+target_industries:
+  - media
+  - podcasting
+  - content
+  - marketing
+
+ai_workflows:
+  - name: Show Notes Generator
+    description: >
+      Automatically generates structured show notes from episode transcripts and
+      segment outlines using AI summarization.
+    models:
+      - GPT-4
+      - Ollama (local)
+  - name: Transcript Processing
+    description: >
+      Processes audio transcripts, identifies speakers, and formats them into
+      readable episode documentation.
+    models:
+      - Whisper
+      - GPT-4
+
+buildly_integrations:
+  - service: Buildly Core
+    description: Native Buildly workflow integration for release management
+  - service: ForgeMarketing
+    description: Runs alongside ForgeMarketing in the shared Docker container suite
+
+support_plans:
+  - name: Community
+    price: "$0"
+    billing: monthly
+    description: GitHub issues, community forum
+    response_time: best-effort
+    sort_order: 1
+  - name: Standard
+    price: "$29"
+    billing: monthly
+    description: Email support, 48h response SLA
+    response_time: 48h
+    sort_order: 2
+
+hosting_plans:
+  - name: Self-hosted
+    price: "$0"
+    billing: one-time
+    description: Run on your own server with the Docker Compose stack
+    deployment_target: docker
+    sort_order: 1
+  - name: Managed Cloud
+    price: "$19"
+    billing: monthly
+    description: Hosted on DigitalOcean with automated updates
+    deployment_target: digitalocean
+    sort_order: 2
